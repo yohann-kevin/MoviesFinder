@@ -1,5 +1,8 @@
+import {getToken} from './token/token.js';
+
 const body = document.getElementById("main");
-const token = "bebb39192704ce0e1759ca4263703f32";
+const containerFilms = document.createElement('div');
+const token = getToken();
 
 let text = "star";
 
