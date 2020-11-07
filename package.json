@@ -4,22 +4,24 @@
   "description": "Liitle app with tmdb api",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yohann-kevin/MoviesFinder.git"
   },
   "keywords": [
-    "film",
-    "finder",
-    "tmdb",
-    "api"
+    "film finder",
+    "tmdb api"
   ],
   "author": "PERRIGUEY Yohann",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yohann-kevin/MoviesFinder/issues"
   },
-  "homepage": "https://github.com/yohann-kevin/MoviesFinder#readme"
+  "homepage": "https://github.com/yohann-kevin/MoviesFinder#readme",
+  "dependencies": {
+    "lite-server": "^2.5.4"
+  }
 }
