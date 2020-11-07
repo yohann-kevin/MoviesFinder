@@ -1,8 +1,7 @@
-// import token from './token.js'
-const testToken = "bebb39192704ce0e1759ca4263703f32";
-let text = "star";
-
 const body = document.getElementById("main");
+const token = "bebb39192704ce0e1759ca4263703f32";
+
+let text = "star";
 
 body.style.margin = "0";
 body.style.padding = "0";
@@ -11,7 +10,7 @@ body.style.justifyContent = "space-around";
 body.style.flexWrap = "wrap";
 body.style.width = "100%"
 
-fetch("https://api.themoviedb.org/3/search/movie?api_key=" + testToken + "&language=fr&query=" + text).then(function (response) {
+fetch("https://api.themoviedb.org/3/search/movie?api_key=" + token + "&language=fr&query=" + text).then(function (response) {
     return response.json();
 }).then(function (json) {
     // console.log(json.results);
