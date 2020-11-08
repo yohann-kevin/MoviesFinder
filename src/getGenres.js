@@ -11,13 +11,11 @@ export function getGenres(id) {
     }).then(function (json) {
         let genres = json.genres;
         for (let i = 0; i < json.genres.length; i++) {
-            // console.log(genres[i]);
             if (genres[i].id === id) {
                 genreName = genres[i].name;
                 console.log(genreName);
                 // return genreName;
             }
         }
-        // console.log(genres[0]);
     })
 }
