@@ -25,7 +25,7 @@ export function overview(container, data) {
         div.appendChild(description);
     }
 
-    console.log(data[0][1]);
-    console.log(data.length);
+    // console.log(data[0][1]);
+    // console.log(data.length);
 
 }
