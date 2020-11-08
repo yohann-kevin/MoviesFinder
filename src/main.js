@@ -20,9 +20,14 @@ fetch("https://api.themoviedb.org/3/search/movie?api_key=" + token + "&language=
 }).then(function (json) {
     for (let i = 0; i < json.results.length; i++) {
         let overviewData = [];
-        overviewData.push(json.results[i].title, json.results[i].overview, json.results[i].release_date, json.results[i].poster_path);
+        overviewData.push(
+            json.results[i].title,
+            json.results[i].overview,
+            json.results[i].release_date,
+            json.results[i].poster_path
+        );
         data.push(overviewData);
+        // console.log(json.results[i]);
     }
     overview(body, data);
-    // console.log(data[0][0]);
 });
