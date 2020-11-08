@@ -14,7 +14,7 @@ export function overview(container, data) {
         div.style.width = "30%";
 
         title.textContent = data[i][0];
-        description.textContent = data[i][1];
+        if (data[i][1].length > 300) description.textContent = data[i][1].slice(0 , 300) + "...";
         releaseDate.textContent = dateFormat(data[i][2]);
         image.src = img(data[i][3]);
 
@@ -25,7 +25,7 @@ export function overview(container, data) {
         div.appendChild(description);
     }
 
-    console.log(data[0][0]);
+    console.log(data[0][1]);
     console.log(data.length);
 
 }
