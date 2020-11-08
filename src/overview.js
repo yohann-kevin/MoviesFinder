@@ -1,4 +1,5 @@
 import {img} from './img.js';
+import {dateFormat} from './dateFormat.js';
 
 export function overview(container, data) {
 
@@ -14,7 +15,7 @@ export function overview(container, data) {
 
         title.textContent = data[i][0];
         description.textContent = data[i][1];
-        releaseDate.textContent = data[i][2];
+        releaseDate.textContent = dateFormat(data[i][2]);
         image.src = img(data[i][3]);
 
         container.appendChild(div);
@@ -24,7 +25,7 @@ export function overview(container, data) {
         div.appendChild(description);
     }
 
-    console.log(data[0][3]);
+    console.log(data[0][0]);
     console.log(data.length);
 
 }

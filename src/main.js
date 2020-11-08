@@ -27,7 +27,7 @@ fetch("https://api.themoviedb.org/3/search/movie?api_key=" + token + "&language=
             json.results[i].poster_path
         );
         data.push(overviewData);
-        // console.log(json.results[i]);
+        console.log(json.results[i]);
     }
     overview(body, data);
 });
