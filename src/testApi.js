@@ -8,6 +8,7 @@ export function testApi() {
     fetch(link + id + "?api_key=" + token + "&language=fr").then(function (response) {
         return response.json();
     }).then(function (json) {
-        console.log(json);
+        let filmData = [json.title, json.overview, json.release_date, json.poster_path];
+        console.log(filmData);
     })
 }

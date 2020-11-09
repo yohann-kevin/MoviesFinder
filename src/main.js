@@ -36,6 +36,7 @@ fetch(link + token + "&language=fr&query=" + text).then(function (response) {
     console.log(json.results[0]);
     getGenres(json.results[0].genre_ids[0]);
     testApi();
+    console.log(json.results[0].id);
     // getGenres(json.results[0].genre_ids[1]);
     // getGenres(json.results[0].genre_ids[2]);
 });
