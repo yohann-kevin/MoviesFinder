@@ -9,6 +9,6 @@ export function testApi() {
         return response.json();
     }).then(function (json) {
         let filmData = [json.title, json.overview, json.release_date, json.poster_path];
-        console.log(filmData);
+        console.log(json);
     })
 }
