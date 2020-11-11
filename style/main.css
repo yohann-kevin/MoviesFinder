@@ -10,6 +10,8 @@
     flex-wrap: wrap;
 }
 
+/* header */
+
 #header {
     width: 100%;
     text-align: center;
@@ -21,6 +23,8 @@
     padding: 10px;
     color: #ffffff;
 }
+
+/* film overview */
 
 #containerFilms {
     background-color: #36393f;
@@ -54,4 +58,8 @@
 .containerContent {
     width: 70%;
     padding-top: 20px;
+}
+
+.containerContent p {
+    padding: 10px;
 }

@@ -32,8 +32,8 @@ fetch(link + token + "&language=fr&query=" + text).then(function (response) {
     }
     overview(containerFilms, data);
     body.appendChild(containerFilms);
-    console.log(json.results[0]);
+    // console.log(json.results[0]);
     getGenres(json.results[0].genre_ids[0]);
     testApi();
-    console.log(json.results[0].id);
+    // console.log(json.results[0].id);
 });
