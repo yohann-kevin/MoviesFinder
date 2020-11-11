@@ -24,6 +24,23 @@
     color: #ffffff;
 }
 
+/* search test */
+
+#searchTest {
+    width: 100%;
+    background-color: #36393f;
+}
+
+#searchFilm {
+    height: 15;
+    padding: 15px;
+}
+
+#btnSearch {
+    height: 30px;
+    margin: 15px;
+}
+
 /* film overview */
 
 #containerFilms {
