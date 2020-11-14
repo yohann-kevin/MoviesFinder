@@ -4,9 +4,9 @@ import {viewsContent} from './viewsContent.js';
 const link = "https://api.themoviedb.org/3/movie/";
 const token = getToken();
 let filmData = [];
-let id = 11;
+// let id = 11;
 
-export function api() {
+export function api(id) {
     fetch(link + id + "?api_key=" + token + "&language=fr").then(function (response) {
         return response.json();
     }).then(function (json) {

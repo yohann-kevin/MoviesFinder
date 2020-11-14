@@ -17,6 +17,8 @@ let data = [];
 // test
 let modal = document.getElementById("modalCase");
 let btnModal = document.getElementsByClassName("modalBtn");
+// test id
+let filmId = [];
 
 containerFilms.style.display = "flex";
 containerFilms.style.justifyContent = "space-around";
@@ -44,12 +46,13 @@ function overviewApi(txt) {
                 json.results[i].release_date,
                 json.results[i].poster_path
             );
+            filmId.push(json.results[i].id);
             data.push(overviewData);
         }
         overview(containerFilms, data);
         body.appendChild(containerFilms);
         openViews();
-        // console.log(json.results[0]);
+        // console.log(filmId);
         // getGenres(json.results[0].genre_ids[0]);
         // api();
         // console.log(json.results[0].id);
@@ -76,8 +79,9 @@ function openViews() {
     for (let i = 0; i < index; i++) {
         btnModal[i].addEventListener("click", function() {
             modal.style.display = "block";
+            api(filmId[i]);
         });
     }
-    api();
+    
     testModal();
 }
