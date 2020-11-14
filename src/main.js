@@ -1,7 +1,8 @@
 import {getToken} from './token/token.js';
-import {overview} from './overview.js'
-import {getGenres} from './getGenres.js'
+import {overview} from './overview.js';
+import {getGenres} from './getGenres.js';
 import {testApi} from './testApi.js';
+import {testModal} from './testModal.js'
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -12,6 +13,9 @@ let btn = document.getElementById("btnSearch");
 let text = "Star Wars";
 let clicked = false;
 let data = [];
+// test
+let modal = document.getElementById("modalCase");
+let btnModal = document.getElementsByClassName("modalBtn");
 
 containerFilms.style.display = "flex";
 containerFilms.style.justifyContent = "space-around";
@@ -43,6 +47,7 @@ function overviewApi(txt) {
         }
         overview(containerFilms, data);
         body.appendChild(containerFilms);
+        openViews();
         // console.log(json.results[0]);
         // getGenres(json.results[0].genre_ids[0]);
         // testApi();
@@ -64,3 +69,17 @@ function removeContent() {
     }
     clicked = true;
 }
+
+
+
+function openViews() {
+    let index = btnModal.length;
+    for (let i = 0; i < index; i++) {
+        console.log(btnModal[i]);
+        btnModal[i].addEventListener("click", function() {
+            modal.style.display = "block";    
+        });
+    }
+    testModal();
+}
+

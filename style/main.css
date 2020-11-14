@@ -54,6 +54,21 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+.overFilms:hover {
+    cursor: pointer;
+    background-color: #2f3136;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
 }
 
 .overFilms h1 {

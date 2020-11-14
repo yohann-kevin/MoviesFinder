@@ -12,8 +12,9 @@ export function overview(container, data) {
         let description = document.createElement('p');
         let image = document.createElement('img');
     
-        div.style.width = "30%";
+        div.style.width = "28%";
         div.classList.add("overFilms");
+        div.classList.add("modalBtn");
         containerContent.classList.add("containerContent");
 
         title.textContent = data[i][0];
