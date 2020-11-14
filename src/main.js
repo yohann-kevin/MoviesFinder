@@ -2,7 +2,6 @@ import {getToken} from './token/token.js';
 import {overview} from './overview.js'
 import {getGenres} from './getGenres.js'
 import {testApi} from './testApi.js';
-import {searchFilm} from './searchFilm.js';
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -24,9 +23,7 @@ overviewApi(text);
 
 btn.addEventListener("click", function() {
     let newText = document.getElementById("searchFilm").value;
-    console.log(data);
     removeData(data);
-    
     if (clicked) overviewApi(newText);
 });
 
@@ -42,7 +39,6 @@ function overviewApi(txt) {
                 json.results[i].release_date,
                 json.results[i].poster_path
             );
-            console.log(data);
             data.push(overviewData);
         }
         overview(containerFilms, data);
@@ -62,6 +58,9 @@ function removeData(data) {
 }
 
 function removeContent() {
-    containerFilms.remove();
+    let index = containerFilms.children.length;
+    for (let i = 0; i < index;i++) {
+        containerFilms.children[0].remove();
+    }
     clicked = true;
 }
