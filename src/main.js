@@ -1,8 +1,9 @@
 import {getToken} from './token/token.js';
 import {overview} from './overview.js';
 import {getGenres} from './getGenres.js';
-import {testApi} from './testApi.js';
-import {testModal} from './testModal.js'
+import {api} from './api.js';
+import {testModal} from './testModal.js';
+import {viewsContent} from "./viewsContent.js";
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -50,7 +51,7 @@ function overviewApi(txt) {
         openViews();
         // console.log(json.results[0]);
         // getGenres(json.results[0].genre_ids[0]);
-        // testApi();
+        // api();
         // console.log(json.results[0].id);
     });
 }
@@ -70,16 +71,13 @@ function removeContent() {
     clicked = true;
 }
 
-
-
 function openViews() {
     let index = btnModal.length;
     for (let i = 0; i < index; i++) {
-        console.log(btnModal[i]);
         btnModal[i].addEventListener("click", function() {
-            modal.style.display = "block";    
+            modal.style.display = "block";
         });
     }
+    api();
     testModal();
 }
-
