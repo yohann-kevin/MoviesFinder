@@ -1,3 +1,5 @@
+import {dateFormat} from './dateFormat.js';
+
 let title = document.getElementById("viewsTitle");
 let tagline = document.getElementById("tagline");
 let years = document.getElementById("years");
@@ -21,11 +23,10 @@ let prodCountries = document.getElementById("prodCountries");
 let prodCompanies = document.getElementById("prodCompanies");
 
 export function viewsContent(data) {
-    // console.log(data);
     title.textContent = data[0];
     tagline.textContent = data[1];
     years.textContent = formatYears(data[2]);
-    releaseDate.textContent = data[2];
+    releaseDate.textContent = dateFormat(data[2]);
     nameGenre.textContent = getGenreName(data[3]);
     runtime.textContent = data[4];
     imgContent.textContent = data[5];
