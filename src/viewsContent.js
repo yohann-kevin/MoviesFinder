@@ -1,4 +1,3 @@
-
 let title = document.getElementById("viewsTitle");
 let tagline = document.getElementById("tagline");
 let years = document.getElementById("years");
@@ -22,12 +21,12 @@ let prodCountries = document.getElementById("prodCountries");
 let prodCompanies = document.getElementById("prodCompanies");
 
 export function viewsContent(data) {
-    console.log(data);
+    // console.log(data);
     title.textContent = data[0];
     tagline.textContent = data[1];
     years.textContent = formatYears(data[2]);
     releaseDate.textContent = data[2];
-    // nameGenre.textContent = data[3];
+    nameGenre.textContent = getGenreName(data[3]);
     runtime.textContent = data[4];
     imgContent.textContent = data[5];
     popularity.textContent = data[6] + " " + data[7];
@@ -45,4 +44,15 @@ function formatYears(date) {
     let lastDate = new Date(date);
     let newDate = lastDate.getFullYear();
     return "(" + newDate + ")";
+}
+
+function getGenreName(genres) {
+    let index = genres.length;
+    let allGenreName = "";
+    for (let i = 0; i < index; i++) {
+        let name = genres[i].name;
+        allGenreName += name;
+        allGenreName += ", ";
+    }
+    return allGenreName;
 }

@@ -14,7 +14,6 @@ export function getGenres(id) {
             if (genres[i].id === id) {
                 genreName = genres[i].name;
                 console.log(genreName);
-                // return genreName;
             }
         }
     })
