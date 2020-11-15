@@ -12,7 +12,14 @@ export function overview(container, data) {
         let description = document.createElement('p');
         let image = document.createElement('img');
     
-        div.style.width = "28%";
+        // div.style.width = "28%";
+        if (window.screen.width < 1400) {
+            div.style.width = "40%";
+        } else if (window.screen.width > 1400) {
+            div.style.width = "28%";
+        } else if (window.screen.style < 700) {
+            div.style.width = "85%";
+        }
         div.classList.add("overFilms");
         div.classList.add("modalBtn");
         containerContent.classList.add("containerContent");
