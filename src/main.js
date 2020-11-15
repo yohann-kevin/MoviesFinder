@@ -23,7 +23,7 @@ let filmId = [];
 containerFilms.style.display = "flex";
 containerFilms.style.justifyContent = "space-around";
 containerFilms.style.flexWrap = "wrap";
-containerFilms.style.width = "100%"
+containerFilms.style.width = "100%";
 containerFilms.id = "containerFilms";
 
 overviewApi(text);

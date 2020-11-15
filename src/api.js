@@ -10,6 +10,7 @@ export function api(id) {
     fetch(link + id + "?api_key=" + token + "&language=fr").then(function (response) {
         return response.json();
     }).then(function (json) {
+        console.log(json);
         filmData = [json.title, json.overview, json.release_date, json.poster_path];
         viewsContent(filmData);
     })
