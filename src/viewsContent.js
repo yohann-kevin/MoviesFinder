@@ -28,7 +28,7 @@ export function viewsContent(data) {
     years.textContent = formatYears(data[2]);
     releaseDate.textContent = dateFormat(data[2]);
     nameGenre.textContent = getGenreName(data[3]);
-    runtime.textContent = data[4];
+    runtime.textContent = convertMinute(data[4]);
     imgContent.textContent = data[5];
     popularity.textContent = data[6] + " " + data[7];
     voteCount.textContent = data[8];
@@ -56,4 +56,11 @@ function getGenreName(genres) {
         allGenreName += ", ";
     }
     return allGenreName;
+}
+
+function convertMinute(minute) {
+    let hours = Math.floor(minute / 60);
+    let minutes = minute % 60;
+    let finalHours = hours + "h" + minutes + "min";
+    return finalHours;
 }
