@@ -52,7 +52,6 @@ function overviewApi(txt) {
         overview(containerFilms, data);
         body.appendChild(containerFilms);
         openViews();
-        console.log(window.screen);
         // console.log(filmId);
         // getGenres(json.results[0].genre_ids[0]);
         // api();
