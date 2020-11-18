@@ -34,7 +34,8 @@ export function viewsContent(data) {
     imgContent.alt = data[0];
     popularity.textContent = data[6] + " " + data[7];
     voteCount.textContent = data[8];
-    linkSite.textContent = data[9];
+    linkSite.textContent = "Official site : " + data[0];
+    linkSite.href = data[9];
     descriptionContent.textContent = data[10];
     status.textContent = data[11];
     budget.textContent = data[12];
