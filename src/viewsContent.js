@@ -1,4 +1,5 @@
 import {dateFormat} from './dateFormat.js';
+import {img} from './img.js';
 
 let title = document.getElementById("viewsTitle");
 let tagline = document.getElementById("tagline");
@@ -29,7 +30,8 @@ export function viewsContent(data) {
     releaseDate.textContent = dateFormat(data[2]);
     nameGenre.textContent = getGenreName(data[3]);
     runtime.textContent = convertMinute(data[4]);
-    imgContent.textContent = data[5];
+    imgContent.src = img(data[5]);
+    imgContent.alt = data[0];
     popularity.textContent = data[6] + " " + data[7];
     voteCount.textContent = data[8];
     linkSite.textContent = data[9];
