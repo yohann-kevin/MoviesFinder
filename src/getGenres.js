@@ -1,7 +1,5 @@
-import {getToken} from './token/token.js';
-
 const link = "https://api.themoviedb.org/3/genre/movie/list?api_key="
-const token = getToken();
+const token = myToken;
 
 let genreName;
 

@@ -1,8 +1,7 @@
-import {getToken} from './token/token.js';
 import {viewsContent} from './viewsContent.js';
 
 const link = "https://api.themoviedb.org/3/movie/";
-const token = getToken();
+const token = myToken;
 let filmData = [];
 // let id = 11;
 

@@ -1,4 +1,3 @@
-import {getToken} from './token/token.js';
 import {overview} from './overview.js';
 import {getGenres} from './getGenres.js';
 import {api} from './api.js';
@@ -7,7 +6,7 @@ import {viewsContent} from "./viewsContent.js";
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
-const token = getToken();
+const token = myToken;
 
 let containerFilms = document.createElement('div');
 let btn = document.getElementById("btnSearch");
