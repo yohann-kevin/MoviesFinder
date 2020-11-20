@@ -21,7 +21,7 @@ export function overview(container, data) {
         description.textContent = data[i][1];
         if (data[i][1].length > 300) description.textContent = data[i][1].slice(0 , 300) + "...";
         if(data[i][1] === "") description.textContent = "Aucune description n'est disponible !";
-        releaseDate.textContent = dateFormat(data[i][2]);
+        releaseDate.textContent = dateFormat(data[i][2], 'fr');
         image.src = img(data[i][3]);
 
         container.appendChild(div);

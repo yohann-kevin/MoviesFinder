@@ -28,7 +28,7 @@ export function viewsContent(data) {
     title.textContent = data[0];
     tagline.textContent = data[1];
     years.textContent = formatYears(data[2]);
-    releaseDate.textContent = dateFormat(data[2]);
+    releaseDate.textContent = dateFormat(data[2], 'fr');
     nameGenre.textContent = getGenreName(data[3]);
     runtime.textContent = convertMinute(data[4]);
     imgContent.src = img(data[5]);

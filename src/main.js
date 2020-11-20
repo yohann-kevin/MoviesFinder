@@ -3,6 +3,7 @@ import {getGenres} from './getGenres.js';
 import {api} from './api.js';
 import {testModal} from './testModal.js';
 import {viewsContent} from "./viewsContent.js";
+import {dateFormat} from './dateFormat.js';
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -25,6 +26,7 @@ containerFilms.style.flexWrap = "wrap";
 containerFilms.style.width = "100%";
 containerFilms.id = "containerFilms";
 
+testDiscoverMovies();
 overviewApi(text);
 
 btn.addEventListener("click", function() {
@@ -51,10 +53,6 @@ function overviewApi(txt) {
         overview(containerFilms, data);
         body.appendChild(containerFilms);
         openViews();
-        // console.log(filmId);
-        // getGenres(json.results[0].genre_ids[0]);
-        // api();
-        // console.log(json.results[0].id);
     });
 }
 
@@ -84,4 +82,37 @@ function openViews() {
     }
     
     testModal();
+}
+
+function testDiscoverMovies() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    today = yyyy + '/' + mm + '/' + dd;
+
+    console.log("Today : " + today);
+    getLastTwoWeeks(yyyy,mm,dd);
+}
+
+function getLastTwoWeeks(years, month, day) {
+    let lastTwoWeeks = new Date();
+    let dd = day;
+    let mm = month;
+    let yyyy = years;
+    if ((dd - 14) < 0) {
+        dd = 30 - 14;
+        mm = mm - 1;
+        if (mm < 10) mm = "0" + mm;
+        if (mm === "00") {
+            mm = 12;
+            yyyy = yyyy - 1;
+        }
+    } else {
+       dd = day - 14;
+       if (dd < 10) dd = "0" + dd;
+    }
+    lastTwoWeeks = yyyy + '/' + mm + '/' + dd;
+    console.log("Two weeks : " + lastTwoWeeks);
 }
