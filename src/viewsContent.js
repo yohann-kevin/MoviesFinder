@@ -38,10 +38,14 @@ export function viewsContent(data) {
     linkSite.href = data[9];
     descriptionContent.textContent = data[10];
     status.textContent = data[11];
-    budget.textContent = data[12];
+    budget.textContent = formatBudget(data[12]);
+    // console.log(data[12]);
     revenue.textContent = data[13];
     prodCountries.textContent = data[14];
-    // prodCompanies.textContent = data[15];
+    prodCompanies.textContent = data[15][0].name;
+    let companiesLogo = document.createElement("img");
+    prodCompanies.appendChild(companiesLogo);
+    companiesLogo.src = img(data[15][0].logo_path);
 }
 
 function formatYears(date) {
@@ -66,4 +70,12 @@ function convertMinute(minute) {
     let minutes = minute % 60;
     let finalHours = hours + "h" + minutes + "min";
     return finalHours;
+}
+
+function formatBudget(num) {
+    let string = "Budget : ";
+    let newBudget = num.toLocaleString();
+    let symbol = " $";
+    newBudget = string + newBudget + symbol;
+    return newBudget;
 }
