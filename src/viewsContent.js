@@ -43,10 +43,7 @@ export function viewsContent(data) {
     revenue.textContent = formatRevenueAndBudget("Revenue : ",data[13]);
     profit.textContent = computeProfit(data[12],data[13]);
     prodCountries.textContent = data[14];
-    prodCompanies.textContent = data[15][0].name;
-    let companiesLogo = document.createElement("img");
-    prodCompanies.appendChild(companiesLogo);
-    companiesLogo.src = img(data[15][0].logo_path);
+    getCompanies(data[15], prodCompanies);
 }
 
 function formatYears(date) {
@@ -87,4 +84,16 @@ function computeProfit(budget,revenue) {
     computedProfit = computedProfit.toLocaleString();
     computedProfit = string + computedProfit + symbol;
     return computedProfit;
+}
+
+function getCompanies(data, container) {
+    let index = data.length;
+    for (let i = 0; i < index; i++) {
+        let name = document.createElement('h2');
+        let logo = document.createElement('img');
+        name.textContent = data[i].name;
+        logo.src = img(data[i].logo_path);
+        container.appendChild(name)
+        container.appendChild(logo);
+    }
 }
