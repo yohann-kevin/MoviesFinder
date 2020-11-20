@@ -38,9 +38,8 @@ export function viewsContent(data) {
     linkSite.href = data[9];
     descriptionContent.textContent = data[10];
     status.textContent = data[11];
-    budget.textContent = formatBudget(data[12]);
-    // console.log(data[12]);
-    revenue.textContent = data[13];
+    budget.textContent = formatRevenueAndBudget("Budget : ",data[12]);
+    revenue.textContent = formatRevenueAndBudget("Revenue : ",data[13]);
     prodCountries.textContent = data[14];
     prodCompanies.textContent = data[15][0].name;
     let companiesLogo = document.createElement("img");
@@ -72,8 +71,8 @@ function convertMinute(minute) {
     return finalHours;
 }
 
-function formatBudget(num) {
-    let string = "Budget : ";
+function formatRevenueAndBudget(string, num) {
+    // let string = "Budget : ";
     let newBudget = num.toLocaleString();
     let symbol = " $";
     newBudget = string + newBudget + symbol;
