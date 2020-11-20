@@ -19,8 +19,9 @@ let status = document.getElementById("status");
 
 let budget = document.getElementById("budget");
 let revenue = document.getElementById("revenue");
-let prodCountries = document.getElementById("prodCountries");
+let profit = document.getElementById("profit");
 
+let prodCountries = document.getElementById("prodCountries");
 let prodCompanies = document.getElementById("prodCompanies");
 
 export function viewsContent(data) {
@@ -40,6 +41,7 @@ export function viewsContent(data) {
     status.textContent = data[11];
     budget.textContent = formatRevenueAndBudget("Budget : ",data[12]);
     revenue.textContent = formatRevenueAndBudget("Revenue : ",data[13]);
+    profit.textContent = computeProfit(data[12],data[13]);
     prodCountries.textContent = data[14];
     prodCompanies.textContent = data[15][0].name;
     let companiesLogo = document.createElement("img");
@@ -72,9 +74,17 @@ function convertMinute(minute) {
 }
 
 function formatRevenueAndBudget(string, num) {
-    // let string = "Budget : ";
     let newBudget = num.toLocaleString();
     let symbol = " $";
     newBudget = string + newBudget + symbol;
     return newBudget;
+}
+
+function computeProfit(budget,revenue) {
+    let computedProfit = revenue - budget;
+    let string = "Profit : ";
+    let symbol = " $";
+    computedProfit = computedProfit.toLocaleString();
+    computedProfit = string + computedProfit + symbol;
+    return computedProfit;
 }
