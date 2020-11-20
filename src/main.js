@@ -1,9 +1,6 @@
 import {overview} from './overview.js';
-import {getGenres} from './getGenres.js';
 import {api} from './api.js';
 import {testModal} from './testModal.js';
-import {viewsContent} from "./viewsContent.js";
-import {dateFormat} from './dateFormat.js';
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -26,7 +23,8 @@ containerFilms.style.flexWrap = "wrap";
 containerFilms.style.width = "100%";
 containerFilms.id = "containerFilms";
 
-testDiscoverMovies();
+// testDiscoverMovies();
+getLastMovies();
 overviewApi(text);
 
 btn.addEventListener("click", function() {
@@ -85,15 +83,14 @@ function openViews() {
 }
 
 function testDiscoverMovies() {
+    let tab = [];
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yyyy = today.getFullYear();
 
-    today = yyyy + '/' + mm + '/' + dd;
-
-    console.log("Today : " + today);
-    getLastTwoWeeks(yyyy,mm,dd);
+    tab.push(yyyy,mm,dd);
+    return tab;
 }
 
 function getLastTwoWeeks(years, month, day) {
@@ -113,6 +110,29 @@ function getLastTwoWeeks(years, month, day) {
        dd = day - 14;
        if (dd < 10) dd = "0" + dd;
     }
-    lastTwoWeeks = yyyy + '/' + mm + '/' + dd;
-    console.log("Two weeks : " + lastTwoWeeks);
+    lastTwoWeeks = yyyy + '-' + mm + '-' + dd;
+    return lastTwoWeeks;
+}
+
+function getLastMovies() {
+    let today = new Date();
+    let tabDate = testDiscoverMovies();
+    let years = tabDate[0];
+    let month = tabDate[1];
+    let day = tabDate[2];
+    today = years + '-' + month + '-' + day;
+    let lastTwoWeeks = getLastTwoWeeks(years, month, day);
+
+    let discoverLink = "https://api.themoviedb.org/3/discover/movie?api_key=";
+    let language = "&language=en-US";
+    let completedLink = "&sort_by=release_date.desc&page=1&release_date.gte=";
+    let FinalLink = "&release_date.lte=";
+
+    
+    console.log(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today)
+    fetch(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today).then(function (response) {
+        return response.json();
+    }).then(function (json) {
+        console.log(json);
+    })
 }
