@@ -38,7 +38,7 @@ export function viewsContent(data) {
     linkSite.textContent = "Official site : " + data[0];
     linkSite.href = data[9];
     descriptionContent.textContent = data[10];
-    status.textContent = data[11];
+    status.textContent = "Status : " + data[11];
     budget.textContent = formatRevenueAndBudget("Budget : ",data[12]);
     revenue.textContent = formatRevenueAndBudget("Revenue : ",data[13]);
     profit.textContent = computeProfit(data[12],data[13]);

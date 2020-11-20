@@ -12,14 +12,7 @@ export function overview(container, data) {
         let description = document.createElement('p');
         let image = document.createElement('img');
     
-        // div.style.width = "28%";
-        if (window.screen.width < 1400) {
-            div.style.width = "40%";
-        } else if (window.screen.width > 1400) {
-            div.style.width = "28%";
-        } else if (window.screen.style < 700) {
-            div.style.width = "85%";
-        }
+        customWidth(div);
         div.classList.add("overFilms");
         div.classList.add("modalBtn");
         containerContent.classList.add("containerContent");
@@ -38,8 +31,14 @@ export function overview(container, data) {
         containerContent.appendChild(description);
         div.appendChild(containerContent);
     }
+}
 
-    // console.log(data[0][1]);
-    // console.log(data.length);
-
+function customWidth(div) {
+    if (window.screen.width < 1400) {
+        div.style.width = "40%";
+    } else if (window.screen.width > 1400) {
+        div.style.width = "28%";
+    } else if (window.screen.style < 700) {
+        div.style.width = "85%";
+    }
 }
