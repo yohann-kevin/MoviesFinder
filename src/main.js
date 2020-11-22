@@ -25,7 +25,7 @@ containerFilms.id = "containerFilms";
 
 // testDiscoverMovies();
 getLastMovies();
-overviewApi(text);
+// overviewApi(text);
 
 btn.addEventListener("click", function() {
     let newText = document.getElementById("searchFilm").value;
@@ -124,15 +124,29 @@ function getLastMovies() {
     let lastTwoWeeks = getLastTwoWeeks(years, month, day);
 
     let discoverLink = "https://api.themoviedb.org/3/discover/movie?api_key=";
-    let language = "&language=en-US";
+    let language = "&language=fr";
     let completedLink = "&sort_by=release_date.desc&page=1&release_date.gte=";
     let FinalLink = "&release_date.lte=";
 
     
-    console.log(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today)
+    // console.log(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today);
     fetch(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today).then(function (response) {
         return response.json();
     }).then(function (json) {
-        console.log(json);
+        console.log(json.results);
+        for (let i = 0; i < json.results.length; i++) {
+            let overviewData = [];
+            overviewData.push(
+                json.results[i].title,
+                json.results[i].overview,
+                json.results[i].release_date,
+                json.results[i].poster_path
+            );
+            filmId.push(json.results[i].id);
+            data.push(overviewData);
+        }
+        overview(containerFilms, data);
+        body.appendChild(containerFilms);
+        openViews();
     })
 }
