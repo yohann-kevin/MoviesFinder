@@ -1,7 +1,7 @@
 {
   "name": "tmdb-api",
   "version": "1.0.0",
-  "description": "Liitle app with tmdb api",
+  "description": "Little app with tmdb api",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
