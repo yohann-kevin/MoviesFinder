@@ -9,7 +9,9 @@ export function api(id) {
     fetch(link + id + "?api_key=" + token + "&language=fr").then(function (response) {
         return response.json();
     }).then(function (json) {
-        filmData = [json.title,
+        console.log(json);
+        filmData = [
+            json.title,
             json.tagline,
             json.release_date,
             json.genres,
@@ -23,9 +25,19 @@ export function api(id) {
             json.status,
             json.budget,
             json.revenue,
-            json.production_countries[0].name,
+            getProductCountries(json.production_countries),
             json.production_companies
         ];
         viewsContent(filmData);
     })
+}
+
+function getProductCountries(data) {
+    console.log(data);
+    if (data.length === 0) {
+        let msg = "Lieux de production inconnu";
+        return msg;
+    } else {
+        return data[0].name;
+    }
 }
