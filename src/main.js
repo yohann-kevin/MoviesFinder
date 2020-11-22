@@ -23,7 +23,6 @@ containerFilms.style.flexWrap = "wrap";
 containerFilms.style.width = "100%";
 containerFilms.id = "containerFilms";
 
-// testDiscoverMovies();
 getLastMovies();
 // overviewApi(text);
 

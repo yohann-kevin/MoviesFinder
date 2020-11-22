@@ -9,7 +9,6 @@ export function api(id) {
     fetch(link + id + "?api_key=" + token + "&language=fr").then(function (response) {
         return response.json();
     }).then(function (json) {
-        console.log(json);
         filmData = [
             json.title,
             json.tagline,
@@ -33,7 +32,6 @@ export function api(id) {
 }
 
 function getProductCountries(data) {
-    console.log(data);
     if (data.length === 0) {
         let msg = "Lieux de production inconnu";
         return msg;

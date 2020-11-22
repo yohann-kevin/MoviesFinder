@@ -2,7 +2,6 @@ import {img} from './img.js';
 import {dateFormat} from './dateFormat.js';
 
 export function overview(container, data) {
-    // console.log(data.length);
     for (let i = 0; i < data.length; i++) {
 
         let div = document.createElement('div');
