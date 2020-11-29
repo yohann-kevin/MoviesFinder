@@ -1,6 +1,13 @@
 # hidden files
+
+#token
 src/token
+
+#module node
 node_modules
+
+#txt
 data.txt
 ideas.txt
 dataManagement.txt
+colors.txt
