@@ -1,6 +1,7 @@
 import {overview} from './overview.js';
 import {api} from './api.js';
 import {testModal} from './testModal.js';
+import {TestLanguage} from './language.js';
 
 const body = document.getElementById("main");
 const link = "https://api.themoviedb.org/3/search/movie?api_key=";
@@ -132,7 +133,7 @@ function getLastMovies() {
     fetch(discoverLink + token + language + completedLink + lastTwoWeeks + FinalLink + today).then(function (response) {
         return response.json();
     }).then(function (json) {
-        console.log(json.results);
+        // console.log(json.results);
         for (let i = 0; i < json.results.length; i++) {
             let overviewData = [];
             overviewData.push(
@@ -147,5 +148,6 @@ function getLastMovies() {
         overview(containerFilms, data);
         body.appendChild(containerFilms);
         openViews();
+        TestLanguage();
     })
 }
