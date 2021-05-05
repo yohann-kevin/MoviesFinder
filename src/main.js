@@ -24,8 +24,8 @@ containerFilms.style.flexWrap = "wrap";
 containerFilms.style.width = "100%";
 containerFilms.id = "containerFilms";
 
-getLastMovies();
-// overviewApi(text);
+// getLastMovies();
+overviewApi(text);
 
 btn.addEventListener("click", function() {
     let newText = document.getElementById("searchFilm").value;
