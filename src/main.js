@@ -148,6 +148,6 @@ function getLastMovies() {
         overview(containerFilms, data);
         body.appendChild(containerFilms);
         openViews();
-        TestLanguage();
+        // TestLanguage();
     })
 }
