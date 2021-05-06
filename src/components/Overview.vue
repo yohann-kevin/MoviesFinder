@@ -17,12 +17,12 @@
 
 <script>
 import warning from '../assets/warning.png';
+import token from '../assets/json/token.json';
 
 export default {
   data() {
     return {
       link: "https://api.themoviedb.org/3/search/movie?api_key=",
-      token: "bebb39192704ce0e1759ca4263703f32",
       txt: "Harry",
       movies: [],
       page: 1
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     findData: function() {
-      let finallyLink = this.link + this.token + "&language=fr&query=" + this.txt + "&page=" + this.page;
+      let finallyLink = this.link + token.token + "&language=fr&query=" + this.txt + "&page=" + this.page;
       console.log(finallyLink);
       this.$axios.get(finallyLink).then(response => this.manageData(response));
     },
@@ -39,12 +39,10 @@ export default {
       this.formatData(response.data);
     },
     formatData: function (data) {
-      // console.log(data.results);
       console.log(data.results.length);
       for (let i = 0; i < data.results.length; i++) {
         this.movies.push(data.results[i]);
       }
-      // console.log(this.movies);
     },
     buildImgPath: function(path) {
       let link = "https://image.tmdb.org/t/p/w300";
@@ -59,8 +57,11 @@ export default {
       this.findData();
     },
     removePage: function() {
-      this.page--;
-      for (let i = 0; i < 20; i++) this.movies.pop();
+      console.log(this.page);
+      if (this.page != 1 && this.page != 0) {
+        this.page--;
+        for (let i = 0; i < 20; i++) this.movies.pop();
+      }
     }
   },
   mounted() {
@@ -140,6 +141,7 @@ export default {
   color: #ffffff;
   font-size: 1.5rem;
 }
+
 #pagination a:hover {
   cursor: pointer;
 }
