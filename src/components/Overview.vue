@@ -1,16 +1,11 @@
 <template>
   <div id="containerFilms">
-    <div class="overFilms modalBtn" style="width: 28%;">
-      <h1>Title</h1>
-      <img src="https://image.tmdb.org/t/p/w300/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg">
+    <div class="overFilms modalBtn" v-for="(movie, i) in movies" :key="i">
+      <h1>{{ movie.title }}</h1>
+      <img :src="buildImgPath(movie.poster_path)">
       <div class="containerContent">
-        <p>Date</p>
-        <p>Il y a bien longtemps, dans une galaxie très lointaine... 
-          La guerre civile fait rage entre l'Empire galactique et l'Alliance 
-          rebelle. Capturée par les troupes de choc de l'Empereur menées par 
-          le sombre et impitoyable Dark Vador, la princesse Leia Organa 
-          dissimule les plans de l’Étoile Noire, une sta...
-        </p>
+        <p>{{ movie.release_date }}</p>
+        <p>{{ formatDescription(movie.overview) }}</p>
       </div>
     </div>
   </div>
@@ -18,7 +13,43 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      link: "https://api.themoviedb.org/3/search/movie?api_key=",
+      token: "bebb39192704ce0e1759ca4263703f32",
+      txt: "Star Wars",
+      movies: []
+    }
+  },
+  methods: {
+    findData: function() {
+      let finallyLink = this.link + this.token + "&language=fr&query=" + this.txt;
+      console.log(finallyLink);
+      this.$axios.get(finallyLink).then(response => this.manageData(response));
+    },
+    manageData: function(response) {
+      if (response.status != 200) console.log("error");
+      this.formatData(response.data);
+    },
+    formatData: function (data) {
+      this.movies = data.results;
+      console.log(this.movies[0]);
+    },
+    buildImgPath: function(path) {
+      let link = "https://image.tmdb.org/t/p/w300";
+      return link + path;
+    },
+    formatDescription: function(content) {
+      if (content.length > 300) {
+        return content.slice(0, 300) + "...";
+      } else {
+        return content;
+      }
+    }
+  },
+  mounted() {
+    this.findData();
+  }
 }
 </script>
 
@@ -27,9 +58,13 @@ export default {
   background-color: #36393f;
   color: #ffffff;
   padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .overFilms {
+  width: 28%;
   padding: 15px;
   display: flex;
   justify-content: space-between;
