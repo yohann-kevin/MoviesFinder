@@ -4,7 +4,7 @@
       <h1>{{ movie.title }}</h1>
       <img :src="buildImgPath(movie.poster_path)" :alt="movie.title">
       <div class="containerContent">
-        <p>{{ movie.release_date }}</p>
+        <p>{{ formatDate(movie.release_date) }}</p>
         <p>{{ formatDescription(movie.overview) }}</p>
       </div>
     </div>
@@ -62,6 +62,10 @@ export default {
         this.page--;
         for (let i = 0; i < 20; i++) this.movies.pop();
       }
+    },
+    formatDate: function(releaseDate) {
+      releaseDate = new Date(releaseDate);
+      return new Intl.DateTimeFormat('fr').format(releaseDate);
     }
   },
   mounted() {
