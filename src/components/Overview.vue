@@ -8,6 +8,10 @@
         <p>{{ formatDescription(movie.overview) }}</p>
       </div>
     </div>
+    <div id="pagination">
+      <a v-on:click="removePage()">Moins</a>
+      <a v-on:click="addPage()">Plus</a>
+    </div>
   </div>
 </template>
 
@@ -19,13 +23,15 @@ export default {
     return {
       link: "https://api.themoviedb.org/3/search/movie?api_key=",
       token: "bebb39192704ce0e1759ca4263703f32",
-      txt: "Harry Potter",
-      movies: []
+      txt: "Harry",
+      movies: [],
+      page: 1
     }
   },
   methods: {
     findData: function() {
-      let finallyLink = this.link + this.token + "&language=fr&query=" + this.txt;
+      let finallyLink = this.link + this.token + "&language=fr&query=" + this.txt + "&page=" + this.page;
+      console.log(finallyLink);
       this.$axios.get(finallyLink).then(response => this.manageData(response));
     },
     manageData: function(response) {
@@ -33,7 +39,12 @@ export default {
       this.formatData(response.data);
     },
     formatData: function (data) {
-      this.movies = data.results;
+      // console.log(data.results);
+      console.log(data.results.length);
+      for (let i = 0; i < data.results.length; i++) {
+        this.movies.push(data.results[i]);
+      }
+      // console.log(this.movies);
     },
     buildImgPath: function(path) {
       let link = "https://image.tmdb.org/t/p/w300";
@@ -42,6 +53,14 @@ export default {
     formatDescription: function(content) {
       if (content.length == 0) return "Aucune description n'est disponible !";
       return content.length > 300 ? content.slice(0, 300) + "..."  : content;
+    },
+    addPage: function() {
+      this.page++;
+      this.findData();
+    },
+    removePage: function() {
+      this.page--;
+      for (let i = 0; i < 20; i++) this.movies.pop();
     }
   },
   mounted() {
@@ -106,5 +125,22 @@ export default {
 
 .containerContent p {
   padding: 10px;
+}
+
+#pagination {
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#pagination a {
+  margin: 15px;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+#pagination a:hover {
+  cursor: pointer;
 }
 </style>
