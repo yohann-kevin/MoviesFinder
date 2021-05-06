@@ -1,19 +1,22 @@
 <template>
   <div id="app">
     <Header/>
-    <search/>
+    <Search/>
+    <overview/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Search from './components/Search.vue'
+import Overview from './components/Overview.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Search
+    Search,
+    Overview
   }
 }
 </script>
