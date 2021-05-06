@@ -1,7 +1,7 @@
 <template>
-  <header id="header">
+  <div id="header">
     <h1 id="title">Movies Finder</h1>
-  </header>
+  </div>
 </template>
 
 <script>
