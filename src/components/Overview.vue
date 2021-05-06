@@ -2,7 +2,7 @@
   <div id="containerFilms">
     <div class="overFilms modalBtn" v-for="(movie, i) in movies" :key="i">
       <h1>{{ movie.title }}</h1>
-      <img :src="buildImgPath(movie.poster_path)">
+      <img :src="buildImgPath(movie.poster_path)" :alt="movie.title">
       <div class="containerContent">
         <p>{{ movie.release_date }}</p>
         <p>{{ formatDescription(movie.overview) }}</p>
@@ -12,19 +12,20 @@
 </template>
 
 <script>
+import warning from '../assets/warning.png';
+
 export default {
   data() {
     return {
       link: "https://api.themoviedb.org/3/search/movie?api_key=",
       token: "bebb39192704ce0e1759ca4263703f32",
-      txt: "Star Wars",
+      txt: "Harry Potter",
       movies: []
     }
   },
   methods: {
     findData: function() {
       let finallyLink = this.link + this.token + "&language=fr&query=" + this.txt;
-      console.log(finallyLink);
       this.$axios.get(finallyLink).then(response => this.manageData(response));
     },
     manageData: function(response) {
@@ -33,18 +34,14 @@ export default {
     },
     formatData: function (data) {
       this.movies = data.results;
-      console.log(this.movies[0]);
     },
     buildImgPath: function(path) {
       let link = "https://image.tmdb.org/t/p/w300";
-      return link + path;
+      return path == null ? warning : link + path;
     },
     formatDescription: function(content) {
-      if (content.length > 300) {
-        return content.slice(0, 300) + "...";
-      } else {
-        return content;
-      }
+      if (content.length == 0) return "Aucune description n'est disponible !";
+      return content.length > 300 ? content.slice(0, 300) + "..."  : content;
     }
   },
   mounted() {
@@ -59,7 +56,7 @@ export default {
   color: #ffffff;
   padding-top: 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
