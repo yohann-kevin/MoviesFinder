@@ -1,6 +1,6 @@
 <template>
   <div id="containerFilms">
-    <div class="overFilms modalBtn" v-for="(movie, i) in movies" :key="i">
+    <div class="overFilms modalBtn" v-for="(movie, i) in movies" :key="i" v-on:click="openViews(movie.id)">
       <h1>{{ movie.title }}</h1>
       <img :src="buildImgPath(movie.poster_path)" :alt="movie.title">
       <div class="containerContent">
@@ -11,6 +11,7 @@
     <div id="pagination">
       <a v-on:click="removePage()">Moins</a>
       <a v-on:click="addPage()">Plus</a>
+      <!-- {{ this.text }} -->
     </div>
   </div>
 </template>
@@ -23,9 +24,10 @@ export default {
   data() {
     return {
       link: "https://api.themoviedb.org/3/search/movie?api_key=",
-      txt: "Harry",
+      txt: "harry+potter",
       movies: [],
-      page: 1
+      page: 1,
+      // props: ['text']
     }
   },
   methods: {
@@ -39,7 +41,7 @@ export default {
       this.formatData(response.data);
     },
     formatData: function (data) {
-      console.log(data.results.length);
+      console.log(data.results);
       for (let i = 0; i < data.results.length; i++) {
         this.movies.push(data.results[i]);
       }
@@ -64,8 +66,17 @@ export default {
       }
     },
     formatDate: function(releaseDate) {
-      releaseDate = new Date(releaseDate);
-      return new Intl.DateTimeFormat('fr').format(releaseDate);
+      try {
+        releaseDate = new Date(releaseDate);
+        return new Intl.DateTimeFormat('fr').format(releaseDate);
+      } catch(err) {
+        console.log(err);
+        return releaseDate;
+      }
+    },
+    openViews: function(id) {
+      // console.log(id);
+      this.$emit("viewsOpen", id);
     }
   },
   mounted() {

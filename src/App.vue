@@ -2,7 +2,8 @@
   <div id="app">
     <Header/>
     <Search/>
-    <overview/>
+    <Overview v-on:viewsOpen="openViews($event)"/>
+    <Views ref="views"/>
   </div>
 </template>
 
@@ -10,13 +11,21 @@
 import Header from './components/Header.vue'
 import Search from './components/Search.vue'
 import Overview from './components/Overview.vue'
+import Views from './components/Views.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
     Search,
-    Overview
+    Overview,
+    Views
+  },
+  methods: {
+    openViews: function(id) {
+      console.log("open", id);
+      this.$refs.views.$refs.modal.style.display = "block";
+    }
   }
 }
 </script>
