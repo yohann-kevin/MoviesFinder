@@ -3,7 +3,7 @@
     <Header/>
     <Search/>
     <Overview v-on:viewsOpen="openViews($event)"/>
-    <Views ref="views"/>
+    <Views ref="views" v-bind:ids="this.filmId"/>
   </div>
 </template>
 
@@ -21,9 +21,14 @@ export default {
     Overview,
     Views
   },
+  data() {
+    return {
+      filmId: 0
+    }
+  },
   methods: {
     openViews: function(id) {
-      console.log("open", id);
+      this.filmId = id;
       this.$refs.views.$refs.modal.style.display = "block";
     }
   }

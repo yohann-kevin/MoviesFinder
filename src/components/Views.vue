@@ -6,6 +6,7 @@
           <h1 id="viewsTitle" class="modalTitle">Title</h1>
           <h2 id="tagline">Tagline Lorem ipsum dolor sit amet consectetur...</h2>
           <p id="years">(years)</p>
+          {{ this.ids }}
         </div>
         <span class="close">&times;</span>
         <div class="subTitle">
@@ -56,7 +57,26 @@
 
 <script>
 export default {
-
+  data() {
+    return {
+      id: null
+    }
+  },
+  props: {
+    ids: Number
+  },
+  watch: {
+    ids: function(newValue, oldValue) {
+      this.id = newValue;
+      console.log(newValue + " " + oldValue);
+      this.findData();
+    }
+  },
+  methods: {
+    findData() {
+      console.log(this.id);
+    }
+  },
 }
 </script>
 
