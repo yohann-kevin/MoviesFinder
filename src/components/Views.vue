@@ -1,51 +1,38 @@
 <template>
   <div id="modalCase" class="views" ref="modal">
-    <div class="viewsContent">
+    <div class="viewsContent" ref="content">
       <div class="viewsHeader">
         <div class="firstTitle">
-          <h1 id="viewsTitle" class="modalTitle">Title</h1>
-          <h2 id="tagline">Tagline Lorem ipsum dolor sit amet consectetur...</h2>
-          <p id="years">(years)</p>
-          {{ this.ids }}
+          <h1 id="viewsTitle" class="modalTitle">{{ this.filmInfo.title }}</h1>
+          <h2 id="tagline">{{ this.filmInfo.tagline }}</h2>
+          <!-- <p id="years">(years)</p> -->
         </div>
-        <span class="close">&times;</span>
+        <span class="close" v-on:click="close()">&times;</span>
         <div class="subTitle">
-          <p id="releaseDate">release_date</p>
+          <p id="releaseDate">{{ this.filmInfo.release_date }}</p>
           <p id="nameGenre">genre -> name</p>
-          <p id="runtime">runtime</p>
+          <p id="runtime">{{ this.filmInfo.runtime }}min</p>
         </div>
       </div>
       <div class="viewsBody">
         <div id="imgContainer">
-          <img id="imgContent" src="#">
+          <img id="imgContent" :src="this.imgLink + this.filmInfo.poster_path">
         </div>
         <div id="allContent">
           <div id="firstContent">
-            <p id="popularity">vote_average & popularity</p>
-            <p id="voteCount">vote_count</p>
+            <p id="popularity">{{ this.filmInfo.vote_average }} & {{ this.filmInfo.popularity }}</p>
+            <p id="voteCount">{{ this.filmInfo.vote_count }}</p>
             <a id="linkSite">(link)</a>
           </div>
           <div id="midContent">
             <h3 id="synopsis">Synopsis</h3>
-            <p id="descriptionContent">overviews : Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Obcaecati labore tempora repudiandae nostrum, impedit,
-                placeat assumenda pariatur possimus deleniti aspernatur,
-                maiores optio blanditiis incidunt? Qui rem suscipit nostrum.
-                Laboriosam a tenetur minima molestias impedit facere blanditiis.
-                Quae amet pariatur, beatae id veritatis quidem, tenetur unde nam
-                nisi blanditiis aliquam sequi debitis dicta alias suscipit vero
-                delectus nostrum excepturi perferendis quos? Similique maxime
-                repudiandae saepe sit praesentium esse sequi laudantium totam amet,
-                magni commodi hic placeat molestiae distinctio corrupti fugiat. Minus
-                non quia sed, maxime dolor voluptatibus eum esse aperiam molestias
-                delectus? Iusto ab nesciunt illo tempore a repellendus modi adipiscis.
-            </p>
+            <p id="descriptionContent">{{ this.filmInfo.overview }}</p>
           </div>
           <div id="lastContent">
-            <p id="status">status</p>
-            <p id="budget">budget</p>
-            <p id="revenue">revenue</p>
-            <p id="profit">profit</p>
+            <p id="status">{{ this.filmInfo.status }}</p>
+            <p id="budget">{{ this.filmInfo.budget }}</p>
+            <p id="revenue">{{ this.filmInfo.revenue }}</p>
+            <p id="profit">{{ this.filmInfo.revenue - this.filmInfo.budget }}</p>
             <p id="prodCountries">production_countries -> name</p>
             <div id="prodCompanies"></div>
           </div>
@@ -56,10 +43,16 @@
 </template>
 
 <script>
+import token from '../assets/json/token.json';
+
 export default {
   data() {
     return {
-      id: null
+      id: null,
+      filmInfo: {},
+      link: "https://api.themoviedb.org/3/movie/",
+      imgLink: "https://image.tmdb.org/t/p/w300"
+      // tok: token
     }
   },
   props: {
@@ -73,8 +66,17 @@ export default {
     }
   },
   methods: {
-    findData() {
+    findData: function() {
       console.log(this.id);
+      let finallyLink = this.link + this.id + "?api_key=" + token.token + "&language=fr";
+      this.$axios.get(finallyLink).then(response => this.manageData(response));
+    },
+    manageData: function(response) {
+      this.filmInfo = response.data;
+      console.log(this.filmInfo);
+    },
+    close: function() {
+      this.$emit("isclose");
     }
   },
 }
@@ -92,7 +94,6 @@ export default {
   overflow: none;
 }
 
-/* Modal Content */
 .viewsContent {
   position: relative;
   background-color: #36393f;
@@ -103,10 +104,9 @@ export default {
   -webkit-animation-name: animateTop;
   -webkit-animation-duration: 0.4s;
   animation-name: animateTop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
-/* Add Animation */
 @-webkit-keyframes animateTop {
   from {
     top: -300px;
@@ -131,7 +131,6 @@ export default {
   }
 }
 
-/* The Close Button */
 .close {
   text-align: center;
   width: 5%;
@@ -149,14 +148,13 @@ export default {
 .close:hover,
 .close:focus {
   padding-top: 5px;
-  color: #36393f;
   text-decoration: none;
   cursor: pointer;
-    /* transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    -moz-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    -o-transform: scale(1.5); */
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
 }
 
 .viewsHeader {
@@ -206,8 +204,6 @@ export default {
   padding-right: 15px;
 }
 
-/* #runtime {} */
-
 .viewsBody {
   padding-top: 25px;
   width: 100%;
@@ -227,16 +223,16 @@ export default {
   -o-transition: 0.4s;
 }
 
-#imgContainer:hover {
+/* #imgContainer:hover {
   margin-left: 50px;
   margin-top: 40px;
-  /* transform: scale(1.3);
+  transform: scale(1.3);
   -webkit-transform: scale(1.3);
   -moz-transform: scale(1.3);
   -ms-transform: scale(1.3);
-  -o-transform: scale(1.3); */
+  -o-transform: scale(1.3);
   cursor: pointer;
-}
+} */
 
 #allContent {
   width: 75%;
@@ -271,11 +267,11 @@ export default {
   -o-transition: 0.4s;
 }
 
-#linkSite:hover {
+/* #linkSite:hover {
   font-size: 1.5rem;
   color: #ffffff;
   text-decoration: underline;
-}
+} */
 
 #midContent {
   width: 80%;
