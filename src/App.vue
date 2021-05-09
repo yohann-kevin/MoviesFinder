@@ -12,6 +12,7 @@ import Header from './components/Header.vue'
 import Search from './components/Search.vue'
 import Overview from './components/Overview.vue'
 import Views from './components/Views.vue'
+// problem with deployments
 
 export default {
   name: 'App',
