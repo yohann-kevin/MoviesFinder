@@ -1,13 +1,17 @@
 <template>
   <div id="searchTest">
-    <input type="text" id="searchFilm" />
-    <button id="btnSearch">Recherche</button>
+    <input type="text" id="searchFilm" v-on:keyup.enter="search()" ref="entry"/>
+    <button id="btnSearch" v-on:click="search()">Recherche</button>
   </div>
 </template>
 
 <script>
 export default {
-
+  methods: {
+    search: function() {
+      this.$emit("searchFilm", this.$refs.entry.value);
+    }
+  }
 }
 </script>
 

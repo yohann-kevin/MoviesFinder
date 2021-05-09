@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Header/>
-    <Search/>
-    <Overview v-on:viewsOpen="openViews($event)"/>
+    <Search v-on:searchFilm="searching($event)"/>
+    <Overview v-bind:text="this.text" v-on:viewsOpen="openViews($event)"/>
     <Views ref="views" v-bind:ids="this.filmId" v-on:isclose="closeViews()"/>
   </div>
 </template>
@@ -23,7 +23,8 @@ export default {
   },
   data() {
     return {
-      filmId: 0
+      filmId: 0,
+      text: "harry potter"
     }
   },
   methods: {
@@ -34,6 +35,9 @@ export default {
     closeViews: function() {
       this.filmId = 0;
       this.$refs.views.$refs.modal.style.display = "none";
+    },
+    searching: function(txt) {
+      this.text = txt;
     }
   }
 }

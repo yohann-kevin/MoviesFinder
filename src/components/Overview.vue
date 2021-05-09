@@ -11,7 +11,6 @@
     <div id="pagination">
       <a v-on:click="removePage()">Moins</a>
       <a v-on:click="addPage()">Plus</a>
-      <!-- {{ this.text }} -->
     </div>
   </div>
 </template>
@@ -28,6 +27,9 @@ export default {
       movies: [],
       page: 1,
     }
+  },
+  props: {
+    text: String
   },
   methods: {
     findData: function() {
@@ -74,8 +76,18 @@ export default {
       }
     },
     openViews: function(id) {
-      // console.log(id);
       this.$emit("viewsOpen", id);
+    },
+    textFormat: function(str) {
+      return str.replace(/\s+/g, '+').toLowerCase();
+    }
+  },
+  watch: {
+    text: function(newValue, oldValue) {
+      this.txt = this.textFormat(newValue);
+      console.log(newValue + " " + oldValue);
+      this.movies = [];
+      this.findData();
     }
   },
   mounted() {
