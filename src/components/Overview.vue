@@ -27,7 +27,6 @@ export default {
       txt: "harry+potter",
       movies: [],
       page: 1,
-      // props: ['text']
     }
   },
   methods: {

@@ -10,7 +10,7 @@
         <span class="close" v-on:click="close()">&times;</span>
         <div class="subTitle">
           <p id="releaseDate">{{ this.filmInfo.release_date }}</p>
-          <p id="nameGenre">genre -> name</p>
+          <p id="nameGenre" v-for="(genre, i) in this.filmInfo.genres" :key="i">{{ genre.name }}</p>
           <p id="runtime">{{ this.filmInfo.runtime }}min</p>
         </div>
       </div>
@@ -52,7 +52,6 @@ export default {
       filmInfo: {},
       link: "https://api.themoviedb.org/3/movie/",
       imgLink: "https://image.tmdb.org/t/p/w300"
-      // tok: token
     }
   },
   props: {
